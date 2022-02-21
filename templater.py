@@ -11,9 +11,12 @@ def template_cover_letter() -> None:
     
     
 
-def template_company(company: str) -> None:
+def template_company(company: str, year: str="{{ year }}", phone: str="{{ phone }}", position: str="{{ position }}") -> None:
     doc = DocxTemplate("Cover Letter Template.docx")
-    context = { 'company' : company }
+    context = { 'company' : company,
+                'year': year,
+                'phone': phone,
+                'position': position }
     doc.render(context)
     folder_exists = os.path.exists('./Cover Letters')
     if not folder_exists:
@@ -23,4 +26,4 @@ def template_company(company: str) -> None:
 
 
 if __name__ == "__main__":
-    template_company('Test')
+    template_cover_letter()
